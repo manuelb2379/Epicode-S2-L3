@@ -115,6 +115,12 @@ const starWarsCharacters = [
 */
 
 /* SCRIVI QUI LA TUA RISPOSTA */
+const nomi = [];
+for (let i = 0; i < starWarsCharacters.length; i++) {
+	nomi.push(starWarsCharacters[i].name);
+}
+console.log(nomi);
+
 
 /* ESERCIZIO 2 — Solo i femminili
    Array vuoto "personaggiFemminili". Con un for + if (gender === "female"),
@@ -124,12 +130,32 @@ const starWarsCharacters = [
 
 /* SCRIVI QUI LA TUA RISPOSTA */
 
+
+const personaggiFemminili = [];
+
+for (let i = 0; i < starWarsCharacters.length; i++) {
+	const c = starWarsCharacters[i];
+	if (c.gender === "female"){
+		personaggiFemminili.push({ name: c.name, hair_color: c.hair_color, eye_color: c.eye_color });
+	}
+}
+console.log(personaggiFemminili);
+
 /* ESERCIZIO 3 — Oggetto raggruppamento
    Crea perColoreOcchi con chiavi: blue, yellow, brown, red, blue-gray (con trattino).
    Ognuna con un array vuoto.
 */
 
 /* SCRIVI QUI LA TUA RISPOSTA */
+
+const perColoreOcchi = {
+	blue: [], 
+	yellow: [], 
+	brown: [], 
+	red: [], 
+	'blue-gray': [],
+}
+
 
 /* ESERCIZIO 4 — Raggruppa per colore degli occhi
    For su starWarsCharacters + switch (character.eye_color).
@@ -138,6 +164,31 @@ const starWarsCharacters = [
 */
 
 /* SCRIVI QUI LA TUA RISPOSTA */
+for (let i = 0; i < starWarsCharacters.length; i++) {
+	const character = starWarsCharacters[i];
+	switch (character.eye_color){
+		case 'blue':
+		perColoreOcchi.blue.push(character);
+		break;
+
+		case 'yellow':
+		perColoreOcchi.yellow.push(character);
+		break;
+		
+		case 'brown':
+		perColoreOcchi.brown.push(character);
+		break;
+		
+		case 'red':
+		perColoreOcchi.red.push(character);
+		break;
+		
+		case ['blue-grey']:
+		perColoreOcchi["blue-gray"].push(character);
+		break;
+	}
+}
+console.log(perColoreOcchi);
 
 /* ESERCIZIO 5 — Massa totale dell'equipaggio (while)
    i = 0, massaTotale = 0.
@@ -164,6 +215,16 @@ const starWarsCharacters = [
 */
 
 /* SCRIVI QUI LA TUA RISPOSTA */
+
+for (let i = 0; i < starWarsCharacters.length; i++) {
+	const robotizza = starWarsCharacters[i];
+	if (robotizza.gender === "n/a"){
+		robotizza.gender = 'robot';
+	}
+}
+console.log(starWarsCharacters)
+
+
 
 /* ESERCIZIO 8 — Più alto e più basso
    For su starWarsCharacters. Trova il personaggio con altezza maggiore e quello con altezza minore.
