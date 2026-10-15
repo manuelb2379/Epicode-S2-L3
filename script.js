@@ -134,9 +134,12 @@ console.log(nomi);
 const personaggiFemminili = [];
 
 for (let i = 0; i < starWarsCharacters.length; i++) {
-	const c = starWarsCharacters[i];
-	if (c.gender === "female"){
-		personaggiFemminili.push({ name: c.name, hair_color: c.hair_color, eye_color: c.eye_color });
+	if (starWarsCharacters[i].gender === 'female') {
+		personaggiFemminili.push({
+			name: starWarsCharacters[i].name,
+			hair_color: starWarsCharacters[i].hair_color,
+			eye_color: starWarsCharacters[i].eye_color
+		});
 	}
 }
 console.log(personaggiFemminili);
@@ -149,10 +152,10 @@ console.log(personaggiFemminili);
 /* SCRIVI QUI LA TUA RISPOSTA */
 
 const perColoreOcchi = {
-	blue: [], 
-	yellow: [], 
-	brown: [], 
-	red: [], 
+	blue: [],
+	yellow: [],
+	brown: [],
+	red: [],
 	'blue-gray': [],
 }
 
@@ -166,29 +169,33 @@ const perColoreOcchi = {
 /* SCRIVI QUI LA TUA RISPOSTA */
 for (let i = 0; i < starWarsCharacters.length; i++) {
 	const character = starWarsCharacters[i];
-	switch (character.eye_color){
+	switch (character.eye_color) {
 		case 'blue':
-		perColoreOcchi.blue.push(character);
-		break;
+			perColoreOcchi.blue.push(character);
+			break;
 
 		case 'yellow':
-		perColoreOcchi.yellow.push(character);
-		break;
-		
+			perColoreOcchi.yellow.push(character);
+			break;
+
 		case 'brown':
-		perColoreOcchi.brown.push(character);
-		break;
-		
+			perColoreOcchi.brown.push(character);
+			break;
+
 		case 'red':
-		perColoreOcchi.red.push(character);
-		break;
-		
+			perColoreOcchi.red.push(character);
+			break;
+
 		case ['blue-grey']:
-		perColoreOcchi["blue-gray"].push(character);
-		break;
+			perColoreOcchi["blue-gray"].push(character);
+			break;
 	}
 }
 console.log(perColoreOcchi);
+/* 
+LA RIGA 171 È INUTILE SI POTEVA METTERE NELLE PARENTESI SEGUENTI 
+starWarsCharacters[i] AL POSTO DI character 
+*/
 
 /* ESERCIZIO 5 — Massa totale dell'equipaggio (while)
    i = 0, massaTotale = 0.
@@ -197,6 +204,15 @@ console.log(perColoreOcchi);
 */
 
 /* SCRIVI QUI LA TUA RISPOSTA */
+
+let i = 0
+let massaTotale = 0
+
+while (i < starWarsCharacters.length) {
+	massaTotale += Number(starWarsCharacters[i].mass);
+	i++;
+}
+console.log(`Massa totale = ${massaTotale}`)
 
 /* ESERCIZIO 6 — Classifica il carico
    Su massaTotale, switch (true) o if/else if:
@@ -209,6 +225,28 @@ console.log(perColoreOcchi);
 
 /* SCRIVI QUI LA TUA RISPOSTA */
 
+switch (true) {
+	case massaTotale < 500:
+		console.log('Carico leggero');
+		break
+
+	case massaTotale < 700:
+		console.log('Carico medio');
+		break
+
+	case massaTotale < 900:
+		console.log('Attenzione: oltre 700');
+		break
+
+	case massaTotale < 1000:
+		console.log('Carico critico');
+		break
+
+	case massaTotale >= 1000:
+		console.log('PERICOLO: sovraccarico');
+		break
+}
+
 /* ESERCIZIO 7 — Robotizza i n/a
    For: per ogni personaggio con gender === "n/a", cambialo in "robot".
    Stampa l'array.
@@ -217,9 +255,8 @@ console.log(perColoreOcchi);
 /* SCRIVI QUI LA TUA RISPOSTA */
 
 for (let i = 0; i < starWarsCharacters.length; i++) {
-	const robotizza = starWarsCharacters[i];
-	if (robotizza.gender === "n/a"){
-		robotizza.gender = 'robot';
+	if (starWarsCharacters[i].gender === "n/a") {
+		starWarsCharacters[i].gender = 'robot';
 	}
 }
 console.log(starWarsCharacters)
@@ -233,6 +270,19 @@ console.log(starWarsCharacters)
 */
 
 /* SCRIVI QUI LA TUA RISPOSTA */
+let piuAlto = starWarsCharacters[0]; //questi sono punti di partenza, che sarebbe il primo dell'array in questo caso
+let piuBasso = starWarsCharacters[0]; //questi sono punti di partenza, che sarebbe il primo dell'array in questo caso
+
+for (let i = 0; i < starWarsCharacters.length; i++) {
+	if (Number(starWarsCharacters[i].height > Number(piuAlto.height))) {
+		piuAlto = starWarsCharacters[i];
+	}
+	if (Number(starWarsCharacters[i].height < Number(piuBasso.height))) {
+		piuBasso = starWarsCharacters[i];
+	}
+}
+console.log(`Più alto: ${piuAlto.name} (${piuAlto.height} cm)`);
+console.log(`Più alto: ${piuBasso.name} (${piuBasso.height} cm)`);
 
 /* ESERCIZIO 9 — Rimuovi i femminili dai nomi (cicli annidati)
    Sull'array "nomi" dell'esercizio 1: for esterno su nomi, for interno su personaggiFemminili.
@@ -241,6 +291,19 @@ console.log(starWarsCharacters)
 */
 
 /* SCRIVI QUI LA TUA RISPOSTA */
+
+console.log(`Lunghezza nomi prima: ${nomi.length}`);
+for (let i = 0; i < nomi.length; i++) {
+	for (let j = 0; j < personaggiFemminili.length; j++) {
+		if(nomi[i] === personaggiFemminili[j].name) {
+			nomi.splice(i, 1);
+			i--; //messo perchè sennò parte dall'indice successivo quindi lo faccio tornare indietro di uno
+			break;
+		}
+	}
+}
+console.log(`Lunghezza nomi dopo: ${nomi.length}`)
+console.log(nomi);
 
 /* ESERCIZIO 10 — Personaggio casuale
    indice = Math.floor(Math.random() * starWarsCharacters.length)
@@ -251,9 +314,29 @@ console.log(starWarsCharacters)
 
 /* SCRIVI QUI LA TUA RISPOSTA */
 
+let indice = Math.floor(Math.random() * starWarsCharacters.length);
+let personaggio = starWarsCharacters[indice];
+console.log(`Personaggio estratto ${personaggio.name}`);
+//qua abbiamo già il personaggio quindi non si cicla ma si mette solo le condizioni che ci daranno le informazioni aggiuntive
+if(personaggio.gender === 'male') {
+	console.log(`Lui è alto ${personaggio.height} cm`);
+} else {
+	console.log(`Lei è alto ${personaggio.height} cm`);
+} 
+
+if(personaggio.hair_color !== 'n/a' && personaggio.hair_color !== 'none'){
+	console.log(`Capelli color ${personaggio.hair_color}`);
+} else {
+	console.log(`Senza capelli`);
+}
+
 /* --EXTRA-- ESERCIZIO 11 — Conta per colore di occhi
    For...in sulle chiavi di perColoreOcchi.
    Stampa: "blue: 4 personaggi", "yellow: 2 personaggi", ecc.
 */
 
 /* SCRIVI QUI LA TUA RISPOSTA */
+
+for(const colore in perColoreOcchi){
+	console.log(`${colore}: ${perColoreOcchi[colore].length} personaggi`); //ha usato [colore] invece di .colore perchè c'è il carattere speciale in 'blue-gray' e sennò mi verrebbe undefined
+}
